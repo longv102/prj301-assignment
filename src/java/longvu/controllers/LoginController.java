@@ -2,6 +2,7 @@ package longvu.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,7 +55,7 @@ public class LoginController extends HttpServlet {
                 } else 
                     request.setAttribute("ERROR_MSG", "Your role is not supported yet!!!");
             }
-        } catch(ClassNotFoundException | SQLException e) {
+        } catch(ClassNotFoundException | SQLException | NamingException e) {
             log("Error at LoginController: " + e.toString());
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

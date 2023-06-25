@@ -2,6 +2,7 @@ package longvu.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -75,7 +76,7 @@ public class CreateUserController extends HttpServlet {
             } else {
                 request.setAttribute("USER_ERROR", userError);
             }
-        } catch(ClassNotFoundException | SQLException e) {
+        } catch(SQLException | NamingException e) {
             log("Errort at CreateController: " + e.toString());
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.naming.NamingException;
 import longvu.utils.DBHelpers;
 
 /**
@@ -22,35 +23,10 @@ public class OrderDAO implements Serializable {
     private final String SQL_INSERT = "INSERT INTO Orders"
             + "(OrderDate, Total, Username, Status) "
             + "VALUES(?, ?, ?, ?)";
-
-    /*public boolean insert(OrderDTO order) 
-            throws SQLException, ClassNotFoundException {
-        boolean check = false;
-        Connection con = null;
-        PreparedStatement stm = null;
-        
-        try {
-            con = DBHelpers.makeConnection();
-            if (con != null) {
-                stm = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-                stm.setTimestamp(1, order.getOrderDate());
-                stm.setDouble(2, order.getTotal());
-                stm.setString(3, order.getUsername());
-                stm.setBoolean(4, true);
-                int value = stm.executeUpdate();
-                if (value > 0) {
-                    check = true;
-                }
-            }
-        } finally {
-            if (stm != null) stm.close();
-            if (con != null) con.close();
-        }
-        return check;
-    }*/
     
+    // insert the order into database, retrieve the orderId to use in OrderDetail
     public int insert(OrderDTO order)
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, ClassNotFoundException, NamingException {
         int orderId = -1;
         Connection con = null;
         PreparedStatement stm = null;

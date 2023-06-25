@@ -7,6 +7,7 @@ package longvu.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +34,8 @@ public class AddToCartController extends HttpServlet {
         String url = ERROR;
         try {
             String id = request.getParameter("id");
-//            String name = request.getParameter("name");
-//            double price = Double.parseDouble(request.getParameter("price"));
+            // String name = request.getParameter("name");
+            // double price = Double.parseDouble(request.getParameter("price"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             ProductDAO dao = new ProductDAO();
             HttpSession session = request.getSession();
@@ -56,7 +57,7 @@ public class AddToCartController extends HttpServlet {
                 request.setAttribute("CART_MESSAGE_ERROR", "A product is not added!");
             }
             url = SUCCESS;
-        } catch(ClassNotFoundException | SQLException e) {
+        } catch(ClassNotFoundException | SQLException | NamingException e) {
             log("Error at AddToCartController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

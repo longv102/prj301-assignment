@@ -2,6 +2,7 @@ package longvu.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,7 +66,7 @@ public class AddProductController extends HttpServlet {
             } else {
                 request.setAttribute("ERROR_MSG", error);
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | NamingException e) {
             log("Error at AddProductController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

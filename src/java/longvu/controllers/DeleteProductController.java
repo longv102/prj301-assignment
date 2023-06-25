@@ -2,6 +2,7 @@ package longvu.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,7 @@ public class DeleteProductController extends HttpServlet {
                 url = SUCCESS;
             else
                 request.setAttribute("ERROR_MSG", "Cannot delete the product!");
-        } catch(ClassNotFoundException | SQLException e) {
+        } catch(ClassNotFoundException | SQLException | NamingException e) {
             log("Error at DeleteProductController: " + e.toString());
         } finally { 
             request.getRequestDispatcher(url).forward(request, response);

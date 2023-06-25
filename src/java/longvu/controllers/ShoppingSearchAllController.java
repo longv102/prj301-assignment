@@ -8,6 +8,7 @@ package longvu.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +39,7 @@ public class ShoppingSearchAllController extends HttpServlet {
                 request.setAttribute("SEARCH_RESULT", products);
                 url = SUCCESS;
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | NamingException e) {
             log("Error at ShoppingSearchAllController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import longvu.utils.DBHelpers;
 
 /**
@@ -22,7 +23,7 @@ public class OrderDetailDAO implements Serializable {
             + "VALUES (?, ?, ?, ?, ?)";
     
     public boolean insert(OrderDetailDTO orderDetail) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package longvu.controllers;
 
 import java.io.IOException;
@@ -9,19 +14,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import longvu.product.ProductDAO;
-import longvu.product.ProductDTO;
+import longvu.user.UserDAO;
+import longvu.user.UserDTO;
 
 /**
  *
  * @author Long Vu <longvu.selfmademillionaire.com>
  */
-@WebServlet(name = "SearchProductController", urlPatterns = {"/SearchProductController"})
-public class SearchProductController extends HttpServlet {
+@WebServlet(name = "SearchUserController", urlPatterns = {"/SearchUserController"})
+public class SearchUserController extends HttpServlet {
 
-    private final String ERROR = "adminProduct.jsp";
-    private final String SUCCESS = "adminProduct.jsp";
-    
+    private final String ERROR = "adminUser.jsp";
+    private final String SUCCESS = "adminUser.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -29,18 +34,18 @@ public class SearchProductController extends HttpServlet {
         try {
             String searchValue = request.getParameter("searchValue");
             if (!searchValue.trim().isEmpty()) {
-                ProductDAO dao = new ProductDAO();
-                dao.getListProducts(searchValue);
-                List<ProductDTO> products = dao.getProducts();
-                if (products != null) {
-                    request.setAttribute("SEARCH_RESULT", products);
+                UserDAO userDAO = new UserDAO();
+                userDAO.getListUsers(searchValue);
+                List<UserDTO> users = userDAO.getUsers();
+                if (users != null) {
+                    request.setAttribute("USER_SEARCH_RESULT", users);
                     url = SUCCESS;
                 } else
-                    request.setAttribute("MESSAGE", "No record is matched!");
+                    request.setAttribute("USER_MESSAGE", "No record is matched!");
             }
-        } catch (SQLException | ClassNotFoundException | NamingException e) {
-            log("Error at SearchProductController: " + e.toString());
-        } finally {
+        } catch(ClassNotFoundException | SQLException | NamingException e) {
+            log("Error at SearchUserController: " + e.toString());
+        } finally { 
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

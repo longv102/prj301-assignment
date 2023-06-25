@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 import longvu.utils.DBHelpers;
 
 /**
@@ -45,7 +46,7 @@ public class UserDAO implements Serializable {
             + "VALUES (?, ?, ?, ?, ?, ?)";
     
     public UserDTO checkLogin(String username, String password) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, ClassNotFoundException, NamingException {
         UserDTO user = null;
         Connection con = null;
         PreparedStatement stm = null;
@@ -82,7 +83,7 @@ public class UserDAO implements Serializable {
     }
     
     public void getListUsers(String searchValue) 
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -114,7 +115,7 @@ public class UserDAO implements Serializable {
     }
         
     public boolean deleteAUser(String username) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, NamingException {
         boolean result = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -137,7 +138,7 @@ public class UserDAO implements Serializable {
     }
     
     public boolean updateAUser(UserDTO user) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, NamingException {
         boolean result = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -162,7 +163,7 @@ public class UserDAO implements Serializable {
     }
     
     public boolean checkDuplicate(String username) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, NamingException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -185,7 +186,7 @@ public class UserDAO implements Serializable {
     }
     
     public boolean createUser(UserDTO user) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, NamingException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 import longvu.utils.DBHelpers;
 
 /**
@@ -64,7 +65,7 @@ public class ProductDAO implements Serializable {
     }
     
     public void getListProducts(String searchValue) 
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -96,7 +97,7 @@ public class ProductDAO implements Serializable {
     }
     
     public void getListProducts() 
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -127,7 +128,7 @@ public class ProductDAO implements Serializable {
     }
     
     public boolean deleteAProduct(String id) 
-            throws SQLException, ClassNotFoundException {
+            throws ClassNotFoundException, NamingException, SQLException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -149,7 +150,7 @@ public class ProductDAO implements Serializable {
     }
     
     public boolean updateAProduct(ProductDTO product)
-            throws ClassNotFoundException, SQLException {
+            throws SQLException, NamingException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -175,7 +176,7 @@ public class ProductDAO implements Serializable {
     }
     
     public boolean checkDuplicate(String id) 
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, SQLException, NamingException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -198,7 +199,7 @@ public class ProductDAO implements Serializable {
     }
 
     public boolean addAProduct(ProductDTO product) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -226,7 +227,7 @@ public class ProductDAO implements Serializable {
     }
 
     public int getProductQuantity(String productId) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, ClassNotFoundException, NamingException {
         int quantity = 0;
         Connection con = null;
         PreparedStatement stm = null;
@@ -251,7 +252,7 @@ public class ProductDAO implements Serializable {
     }
 
     public boolean updateProductQuantity(ProductDTO product) 
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, SQLException, NamingException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -274,7 +275,7 @@ public class ProductDAO implements Serializable {
     }
     
     public ProductDTO getProductInfoById(String id) 
-            throws SQLException, ClassNotFoundException {
+            throws SQLException, ClassNotFoundException, NamingException {
         ProductDTO product = null;
         Connection con = null;
         PreparedStatement stm = null;

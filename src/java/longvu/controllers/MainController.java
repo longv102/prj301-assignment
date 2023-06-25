@@ -41,9 +41,6 @@ public class MainController extends HttpServlet {
     private final String CREATE = "Create";
     private final String CREATE_USER_CONTROLLER = "CreateUserController";
     
-//    private final String SHOPPING = "shopping";
-//    private final String SHOPPING_PAGE = "shopping.jsp";
-    
     private final String SHOPPING_SEARCH = "shopSearch";
     private final String SHOPPING_SEARCH_CONTROLLER = "ShoppingSearchController";
         
@@ -64,6 +61,15 @@ public class MainController extends HttpServlet {
     
     private final String CHECKOUT = "checkout";
     private final String CHECKOUT_CART_CONTROLLER = "CheckoutCartController";
+    
+    private final String SEARCH_USER = "userSearch";
+    private final String SEARCH_USER_CONTROLLER = "SearchUserController";
+    
+    private final String DELETE_USER = "userDelete";
+    private final String DELETE_USER_CONTROLLER = "DeleteUserController";
+    
+    private final String UPDATE_USER = "userUpdate";
+    private final String UPDATE_USER_CONTROLLER = "UpdateUserController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -105,6 +111,12 @@ public class MainController extends HttpServlet {
                 url = REMOVE_CART_CONTROLLER;
             } else if (CHECKOUT.equals(button)) {
                 url = CHECKOUT_CART_CONTROLLER;
+            } else if (SEARCH_USER.equals(button)) {
+                url = SEARCH_USER_CONTROLLER;
+            } else if (DELETE_USER.equals(button)) {
+                url = DELETE_USER_CONTROLLER;
+            } else if (UPDATE_USER.equals(button)) {
+                url = UPDATE_USER_CONTROLLER;
             }
         } catch(Exception e) {
             log("Error at MainController: " + e.toString());

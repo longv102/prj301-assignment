@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="css/adminStyle.css">
     </head>
     <body>
-        <!--admin authorization-->
+        <!--admin product authorization-->
         <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleId ne 'ADP'}">
             <c:redirect url="login.html"></c:redirect>
         </c:if>

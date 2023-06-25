@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -83,7 +84,7 @@ public class CheckoutCartController extends HttpServlet {
                     }
                 }
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | NamingException e) {
             log("Error at CheckoutCartController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

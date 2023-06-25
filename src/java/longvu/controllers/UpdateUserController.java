@@ -1,45 +1,60 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package longvu.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import longvu.product.ProductDAO;
-import longvu.product.ProductDTO;
+import javax.servlet.http.HttpSession;
+import longvu.user.UserDAO;
+import longvu.user.UserDTO;
 
 /**
  *
  * @author Long Vu <longvu.selfmademillionaire.com>
  */
-@WebServlet(name = "SearchProductController", urlPatterns = {"/SearchProductController"})
-public class SearchProductController extends HttpServlet {
+@WebServlet(name = "UpdateUserController", urlPatterns = {"/UpdateUserController"})
+public class UpdateUserController extends HttpServlet {
 
-    private final String ERROR = "adminProduct.jsp";
-    private final String SUCCESS = "adminProduct.jsp";
+    private final String ERROR = "SearchUserController";
+    private final String SUCCESS = "SearchUserController";
+    private final String LOGOUT = "LogoutController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String searchValue = request.getParameter("searchValue");
-            if (!searchValue.trim().isEmpty()) {
-                ProductDAO dao = new ProductDAO();
-                dao.getListProducts(searchValue);
-                List<ProductDTO> products = dao.getProducts();
-                if (products != null) {
-                    request.setAttribute("SEARCH_RESULT", products);
-                    url = SUCCESS;
-                } else
-                    request.setAttribute("MESSAGE", "No record is matched!");
+            String username = request.getParameter("username");
+            String fullName = request.getParameter("fullName");
+            String roleId = request.getParameter("roleId");
+            String email = request.getParameter("email");
+            String password = "";
+            UserDAO userDAO = new UserDAO();
+            UserDTO user = new UserDTO(username, password, fullName, email, roleId);
+            boolean checkUpdate = userDAO.updateAUser(user);
+            if (checkUpdate) {
+                HttpSession session = request.getSession();
+                UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                // update the admin's info has already logged in
+                // return to the start page: login.html
+                if (username.equals(loginUser.getUsername())) {
+                    url = LOGOUT;
+                    return;
+                }
+                request.setAttribute("UPDATE_MSG", "Update successfully!");
+                url = SUCCESS;
             }
-        } catch (SQLException | ClassNotFoundException | NamingException e) {
-            log("Error at SearchProductController: " + e.toString());
+        } catch(SQLException | NamingException e) {
+            log("Error at UpdateUserController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

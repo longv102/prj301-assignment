@@ -1,45 +1,55 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package longvu.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import longvu.product.ProductDAO;
-import longvu.product.ProductDTO;
+import javax.servlet.http.HttpSession;
+import longvu.user.UserDAO;
+import longvu.user.UserDTO;
 
 /**
  *
  * @author Long Vu <longvu.selfmademillionaire.com>
  */
-@WebServlet(name = "SearchProductController", urlPatterns = {"/SearchProductController"})
-public class SearchProductController extends HttpServlet {
+@WebServlet(name = "DeleteUserController", urlPatterns = {"/DeleteUserController"})
+public class DeleteUserController extends HttpServlet {
 
-    private final String ERROR = "adminProduct.jsp";
-    private final String SUCCESS = "adminProduct.jsp";
+    private final String ERROR = "SearchUserController";
+    private final String SUCCESS = "SearchUserController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String searchValue = request.getParameter("searchValue");
-            if (!searchValue.trim().isEmpty()) {
-                ProductDAO dao = new ProductDAO();
-                dao.getListProducts(searchValue);
-                List<ProductDTO> products = dao.getProducts();
-                if (products != null) {
-                    request.setAttribute("SEARCH_RESULT", products);
+            String username = request.getParameter("username");
+            UserDAO userDAO = new UserDAO();
+            HttpSession session = request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            if (loginUser != null) {
+                if (username.equals(loginUser.getUsername())) {
+                    request.setAttribute("DELETE_ERROR", "Cannot delete this user!");
+                    return;
+                }
+                boolean checkDelete = userDAO.deleteAUser(username);
+                if (checkDelete) {
+                    request.setAttribute("DELETE_MSG", "Delete successfully!");
                     url = SUCCESS;
-                } else
-                    request.setAttribute("MESSAGE", "No record is matched!");
+                }
             }
-        } catch (SQLException | ClassNotFoundException | NamingException e) {
-            log("Error at SearchProductController: " + e.toString());
+        } catch(SQLException | NamingException e) {
+          log("Error at DeleteUserController: " + e.toString());  
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
