@@ -1,0 +1,16 @@
+/*
+PRJ301_Assignment
+Long Vu 
+*/
+/* 
+    Created on : Jun 10, 2023, 11:43:47 PM
+    Author     : Long Vu <longvu.selfmademillionaire.com>
+*/
+
+.header {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

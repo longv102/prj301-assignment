@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+PRJ301_Assignment
+Long Vu 
+-->
+<html>
+    <head>
+        <title>Login Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS-->
+        <link rel="stylesheet" href="css/loginStyle.css">
+        <!--Boxicons CSS-->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    
+    <body>
+        <section class="container forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header>Login</header>
+                    <form action="MainController" method="POST">
+                        <div class="field input-field">
+                            <input type="text" name="username" value="" 
+                                   placeholder="Username" class="input">
+                        </div>
+
+                        <div class="field input-field">
+                            <input type="password" name="password" value="" 
+                                   placeholder="Password" class="password">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+
+                        <div class="form-link">
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+
+                        <div class="field button-field">
+                            <button type="submit" name="btAction" value="Login">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="form-link">
+                        <span>Don't have an account?
+                            <a href="MainController?btAction=createUser" class="signup-link">
+                                Signup
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+                
+                <div class="media-options">
+                    <a href="#" class="field google">
+                        <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" alt="google logo" class="google-img">
+                        <span>Login with Google</span>
+                    </a>
+                </div>
+            </div>
+            
+        </section>
+        <!--Javascript-->
+        <script src="js/loginScript.js"></script>
+    </body>
+</html>

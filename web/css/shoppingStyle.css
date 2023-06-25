@@ -1,0 +1,58 @@
+/*
+PRJ301_Assignment
+Long Vu 
+*/
+/* 
+    Created on : Jun 11, 2023, 3:34:24 PM
+    Author     : Long Vu <longvu.selfmademillionaire.com>
+*/
+
+.header {
+    padding: 15px 0;
+    background-color: rgba(245, 245, 245, 0.90);
+}
+
+.header h1 {
+    text-align: center;
+}
+
+.navigation-bar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 25px;
+}
+
+.navigation-bar form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.list-product {
+    margin-top: 10px;
+    background-color: wheat;
+    width: 100%;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 5px;
+    width: 32%;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.product-info {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.product img {
+    width: 50%;
+}
+
