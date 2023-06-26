@@ -69,7 +69,7 @@
             Checkout
         </button>
     </form>
-    ${requestScope.CHECKOUT_MESSAGE}
-    <a href="MainController?btAction=searchAll">Add more product!</a>
+    <a href="MainController?btAction=searchAll">Click the link to add more product</a>
+    <h3 style="color: red">${requestScope.CHECKOUT_MESSAGE}</h3>
 </body>
 </html>

@@ -17,11 +17,6 @@
         <link rel="stylesheet" href="css/adminStyle.css">
     </head>
     <body>
-        <!--admin product authorization-->
-        <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleId ne 'ADP'}">
-            <c:redirect url="login.html"></c:redirect>
-        </c:if>
-
         <div class="header">
             <h1>Welcome Admin: ${sessionScope.LOGIN_USER.fullName}</h1>
             <form action="MainController">
@@ -107,8 +102,11 @@
                     </c:forEach>
                 </tbody>
             </table>
+            <h2 style="color: red">${requestScope.MESSAGE}</h2>
+            <h2 style="color: red">${requestScope.ERROR_MSG}</h2>
         </c:if>
     </c:if>
+    <br>
     <a href="MainController?btAction=addProduct">Click the link to add a new product!</a>
 </body>
 </html>

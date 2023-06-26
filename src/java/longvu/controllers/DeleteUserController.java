@@ -39,7 +39,7 @@ public class DeleteUserController extends HttpServlet {
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             if (loginUser != null) {
                 if (username.equals(loginUser.getUsername())) {
-                    request.setAttribute("DELETE_ERROR", "Cannot delete this user!");
+                    request.setAttribute("DELETE_MSG", "Cannot delete this user!");
                     return;
                 }
                 boolean checkDelete = userDAO.deleteAUser(username);

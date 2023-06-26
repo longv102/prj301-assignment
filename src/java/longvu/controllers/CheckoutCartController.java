@@ -83,6 +83,8 @@ public class CheckoutCartController extends HttpServlet {
                         url = SUCCESS;
                     }
                 }
+            } else {
+                request.setAttribute("CHECKOUT_MESSAGE", "Cannot checkout!");
             }
         } catch (ClassNotFoundException | SQLException | NamingException e) {
             log("Error at CheckoutCartController: " + e.toString());

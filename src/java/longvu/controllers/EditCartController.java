@@ -37,7 +37,7 @@ public class EditCartController extends HttpServlet {
             if (cart != null) {
                 ProductDTO product = cart.getCart().get(id);
                 if (product != null) {
-                    if (quantity > 1)
+                    if (quantity >= 1)
                         product.setQuantity(quantity);
                 }
                 boolean check = cart.edit(id, product);
@@ -46,7 +46,7 @@ public class EditCartController extends HttpServlet {
                     url = SUCCESS;
                 }
             }
-        } catch(Exception e) {
+        } catch(NumberFormatException e) {
             log("Error at EditCartController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

@@ -10,15 +10,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Admin User</title>
+        <title>Admin User Page</title>
         <link rel="stylesheet" href="css/adminStyle.css">
     </head>
     <body>
-        <!--admin user authorization-->
-        <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleId ne 'ADU'}">
-            <c:redirect url="login.html"></c:redirect>
-        </c:if>
-
         <div class="header">
             <h1>Welcome Admin: ${sessionScope.LOGIN_USER.fullName}</h1>
             <form action="MainController">
@@ -87,7 +82,9 @@
                     </c:forEach>
                 </tbody>
             </table>
-            ${requestScope.USER_MESSAGE}
+                <h2 style="color: red">${requestScope.USER_MESSAGE}</h2>
+                <h2 style="color: red">${requestScope.UPDATE_MSG}</h2>
+                <h2 style="color: red">${requestScope.DELETE_MSG}</h2>
         </c:if>
     </c:if>
 </body>
