@@ -61,7 +61,8 @@ public class UserDAO implements Serializable {
                 rs = stm.executeQuery();
                 
                 if (rs.next()) {
-                    if (username.equals(rs.getString("Username")) && password.equals(rs.getString("Password"))) {
+                    if (username.equals(rs.getString("Username")) 
+                            && password.equals(rs.getString("Password"))) {
                         String fullName = rs.getString("Fullname");
                         String roleId = rs.getString("RoleID");
                         user = new UserDTO(username, "", fullName, "", roleId);

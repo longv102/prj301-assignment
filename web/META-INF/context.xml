@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/PRJ301_Finale">
-    <Resource name="DBConnection" auth="Container" type="javax.sql.DataSource"
-              username="sa" password="12345"
-              driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-              url="jdbc:sqlserver://localhost:1433;databaseName=ShoppingStore">
+<Context path="/PRJ301_Assignment">
+    <Resource auth="Container" 
+              driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+              name="DBConnection" password="12345" type="javax.sql.DataSource" 
+              url="jdbc:sqlserver://localhost:1433;databaseName=ShoppingStore" 
+              username="sa">
     </Resource>
 </Context>
