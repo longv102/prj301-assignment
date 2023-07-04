@@ -44,7 +44,6 @@ public class DeleteUserController extends HttpServlet {
                 }
                 boolean checkDelete = userDAO.deleteAUser(username);
                 if (checkDelete) {
-                    request.setAttribute("DELETE_MSG", "Delete successfully!");
                     url = SUCCESS;
                 }
             }

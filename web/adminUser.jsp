@@ -27,8 +27,8 @@
             <button type="submit" name="btAction" value="userSearch">
                 Search
             </button>
-        </form>
-        <br>
+        </form> <br>
+        
         <c:if test="${requestScope.USER_SEARCH_RESULT != null}">
             <c:if test="${not empty requestScope.USER_SEARCH_RESULT}">
                 <table border="1">
@@ -46,46 +46,45 @@
                     </thead>
 
                     <tbody>
-                        <c:forEach var="user" varStatus="counter" items="${requestScope.USER_SEARCH_RESULT}">
-                        <form action="MainController">
-                            <tr>
-                                <td>${counter.count}</td>
-                                <td>
-                                    <input type="text" name="username" value="${user.username}" readonly="">
-                                </td>
-                                <td>
-                                    <input type="text" name="fullName" value="${user.fullName}" required="">
-                                </td>
-                                <td>${user.password}</td>
-                                <td>
-                                    <input type="text" name="roleId" value="${user.roleId}" required="">
-                                </td>
-                                <td>
-                                    <input type="text" name="email" value="${user.email}">
-                                </td>
-                                <td>
-                                    <input type="hidden" name="username" value="${user.username}" readonly="">
-                                    <input type="hidden" name="searchValue" value="${param.searchValue}" readonly="">
-                                    <button type="submit" name="btAction" value="userUpdate">
-                                        Update
-                                    </button>
-                                </td>
-                                <td>
-                                    <input type="hidden" name="username" value="${user.username}" readonly="">
-                                    <input type="hidden" name="searchValue" value="${param.searchValue}" readonly="">
-                                    <button type="submit" name="btAction" value="userDelete">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        </form>
-                    </c:forEach>
-                </tbody>
-            </table>
-                <h2 style="color: red">${requestScope.USER_MESSAGE}</h2>
-                <h2 style="color: red">${requestScope.UPDATE_MSG}</h2>
-                <h2 style="color: red">${requestScope.DELETE_MSG}</h2>
+                        <c:forEach var="user" varStatus="counter" 
+                                   items="${requestScope.USER_SEARCH_RESULT}">
+                            <form action="MainController">
+                                <tr>
+                                    <td>${counter.count}</td>
+                                    <td>
+                                        <input type="text" name="username" value="${user.username}" readonly="">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="fullName" value="${user.fullName}" required="">
+                                    </td>
+                                    <td>${user.password}</td>
+                                    <td>
+                                        <input type="text" name="roleId" value="${user.roleId}" required="">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="email" value="${user.email}">
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="username" value="${user.username}" readonly="">
+                                        <input type="hidden" name="searchValue" value="${param.searchValue}" readonly="">
+                                        <button type="submit" name="btAction" value="userUpdate">
+                                            Update
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="username" value="${user.username}" readonly="">
+                                        <input type="hidden" name="searchValue" value="${param.searchValue}" readonly="">
+                                        <button type="submit" name="btAction" value="userDelete">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </c:if>
         </c:if>
-    </c:if>
-</body>
+        <h2 style="color: red">${requestScope.USER_MESSAGE}</h2>
+    </body>
 </html>

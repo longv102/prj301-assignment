@@ -17,7 +17,6 @@
         <title>Shopping Page</title>
     </head>
     <body>
-        <!--authorization-->
         <div class="header">
             <h1>Welcome to Long Vu's Store</h1>
             <div class="navigation-bar">
@@ -61,7 +60,7 @@
                     <c:if test="${requestScope.SEARCH_RESULT != null}">
                         <c:forEach var="product" items="${requestScope.SEARCH_RESULT}">
                             <form action="MainController">
-                                <div class="product col-lg-4 col-sm-12">
+                                <div class="product col-lg-4 col-md-6 col-sm-12">
                                     <input type="hidden" name="searchValue" value="${param.searchValue}" readonly="">
                                     <!--product's image-->
                                     <img src="${product.image}" alt="product-image">

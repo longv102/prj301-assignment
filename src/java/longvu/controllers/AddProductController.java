@@ -20,7 +20,7 @@ import longvu.product.ProductError;
 public class AddProductController extends HttpServlet {
 
     private final String ERROR = "addProduct.jsp";
-    private final String SUCCESS = "adminProduct.jsp";
+    private final String SUCCESS = "addProduct.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,33 +36,37 @@ public class AddProductController extends HttpServlet {
             String category = request.getParameter("category");
             
             ProductDAO dao = new ProductDAO();
-            ProductDTO product = new ProductDTO(id, name, image, price, quantity, category);
             ProductError error = new ProductError();
             boolean checkValidation = true;
-            // product validation
-            if (!id.startsWith("P") || id.length() != 4) {
-                error.setIdError("The product's id MUST start with the letter P, "
-                        + "and the length is in 4 characters!");
+            String idFormat = "^P\\d{3}$";
+            
+            if (!id.matches(idFormat)) {
+                error.setIdError("The id is [Pxxx], X stands for a digit!");
                 checkValidation = false;
             }
             // check duplicate of product's id
             boolean checkDuplicate = dao.checkDuplicate(id);
             if (checkDuplicate) {
-                error.setIdError("The product's id CANNOT DUPLICATE. ID: " + product.getId());
+                error.setIdError("This id has already existed! Choose another id");
                 checkValidation = false;
             }
             
             if (image == null) {
-                error.setImageError("Provide an image for the product!");
+                error.setImageError("An image is provided for the product!");
                 checkValidation = false;
             }
             
+            ProductDTO product = new ProductDTO(id, name, image, 
+                    price, quantity, category, true);
             if (checkValidation) {
                 boolean checkAdd = dao.addAProduct(product);
-                if (checkAdd)
+                if (checkAdd) {
                     url = SUCCESS;
-                else
-                    error.setMessageError("Unknown error. Cannot add a product!");
+                    request.setAttribute("MESSAGE", 
+                            "The product is added successfully!");
+                } else {
+                    error.setMessageError("UNKNOWN ERROR! Cannot add a product");
+                }
             } else {
                 request.setAttribute("ERROR_MSG", error);
             }

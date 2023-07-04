@@ -27,7 +27,8 @@ public class OrderDetailDTO implements Serializable {
         this.quantity = 0;
     }
 
-    public OrderDetailDTO(int orderDetailId, int orderId, String productId, double price, int quantity) {
+    public OrderDetailDTO(int orderDetailId, 
+            int orderId, String productId, double price, int quantity) {
         this.orderDetailId = orderDetailId;
         this.orderId = orderId;
         this.productId = productId;

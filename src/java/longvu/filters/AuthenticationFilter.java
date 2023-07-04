@@ -32,10 +32,10 @@ public class AuthenticationFilter implements Filter {
     
     private static final boolean debug = true;
     
-    private static List<String> USER_RESOURCES;
-    private static List<String> ADMIN_PRODUCT_RESOURCES;
-    private static List<String> ADMIN_USER_RESOURCES;
-    private static List<String> NON_AUTHEN_RESOURCES;
+    private final List<String> USER_RESOURCES;
+    private final List<String> ADMIN_PRODUCT_RESOURCES;
+    private final List<String> ADMIN_USER_RESOURCES;
+    private final List<String> NON_AUTHEN_RESOURCES;
     private final String US = "US";
     private final String ADU = "ADU";
     private final String ADP = "ADP";
@@ -49,6 +49,11 @@ public class AuthenticationFilter implements Filter {
         
         ADMIN_PRODUCT_RESOURCES = new ArrayList<>();
         ADMIN_PRODUCT_RESOURCES.add("adminProduct.jsp");
+        ADMIN_PRODUCT_RESOURCES.add("AddProductController");
+        ADMIN_PRODUCT_RESOURCES.add("DeleteProductController");
+        ADMIN_PRODUCT_RESOURCES.add("SearchProductController");
+        ADMIN_PRODUCT_RESOURCES.add("UpdateProductController");
+        
         
         ADMIN_USER_RESOURCES = new ArrayList<>();
         ADMIN_USER_RESOURCES.add("adminUser.jsp");
@@ -59,7 +64,12 @@ public class AuthenticationFilter implements Filter {
         NON_AUTHEN_RESOURCES.add("shopping.jsp");
         NON_AUTHEN_RESOURCES.add("MainController");
         NON_AUTHEN_RESOURCES.add("LoginController");
-        NON_AUTHEN_RESOURCES.add("");
+        NON_AUTHEN_RESOURCES.add("css/adminStyle.css");
+        NON_AUTHEN_RESOURCES.add("css/createUserStyle.css");
+        NON_AUTHEN_RESOURCES.add("css/loginStyle.css");
+        NON_AUTHEN_RESOURCES.add("css/shoppingStyle.css");
+        NON_AUTHEN_RESOURCES.add("js/createUserScript.js");
+        NON_AUTHEN_RESOURCES.add("js/loginScript.js");
         NON_AUTHEN_RESOURCES.add(".png");
         NON_AUTHEN_RESOURCES.add(".jpg");
         NON_AUTHEN_RESOURCES.add(".gif");

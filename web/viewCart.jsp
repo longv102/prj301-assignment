@@ -11,6 +11,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Cart</title>
+        <style>
+            a {
+                text-decoration: none;
+                color: blueviolet;
+            }
+        </style>
     </head>
     <body>
         <h1>Your shopping Cart</h1>
@@ -28,48 +34,52 @@
                         <th>Total</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     <c:forEach var="item" varStatus="counter" 
                                items="${sessionScope.CART.cart}">
                         <c:set var="product" value="${item.value}" />
                         <c:set var="itemTotal" value="${product.price * product.quantity}" />
-                    <form action="MainController">
-                        <tr>
-                            <td>${counter.count}</td>
-                            <td>
-                                <input type="text" name="id" value="${product.id}" readonly="">
-                            </td>
-                            <td>${product.name}</td>
-                            <td>${product.price}</td>
-                            <td>
-                                <input type="number" name="quantity" value="${product.quantity}" min="1" required="">
-                            </td>
-                            <td>
-                                <button type="submit" name="btAction" value="Edit">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="submit" name="btAction" value="Remove">
-                                    Remove
-                                </button>
-                            </td>
-                            <td>${itemTotal}</td>
-                        </tr>
-                    </form>
-                    <c:set var="total" value="${total + itemTotal}" />
-                </c:forEach>
-            </tbody>
-        </table>
-    </c:if>
-    <h2>Total: ${total}</h2>
-    <!--checkout-->
-    <form action="MainController">
-        <button type="submit" name="btAction" value="checkout">
-            Checkout
-        </button>
-    </form>
-    <a href="MainController?btAction=searchAll">Click the link to add more product</a>
-    <h3 style="color: red">${requestScope.CHECKOUT_MESSAGE}</h3>
-</body>
+                        <form action="MainController">
+                            <tr>
+                                <td>${counter.count}</td>
+                                <td>
+                                    <input type="text" name="id" value="${product.id}" readonly="">
+                                </td>
+                                <td>${product.name}</td>
+                                <td>${product.price}</td>
+                                <td>
+                                    <input type="number" name="quantity" value="${product.quantity}" 
+                                           min="1" required="">
+                                </td>
+                                <td>
+                                    <button type="submit" name="btAction" value="Edit">
+                                        Edit
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="submit" name="btAction" value="Remove">
+                                        Remove
+                                    </button>
+                                </td>
+                                <td>${itemTotal}</td>
+                            </tr>
+                        </form>
+                        <c:set var="total" value="${total + itemTotal}" />
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
+        <h2>Total: ${total}</h2>
+        <!--checkout-->
+        <form action="MainController">
+            <button type="submit" name="btAction" value="checkout">
+                Checkout
+            </button>
+        </form> <br>
+        <h3 style="color: red">${requestScope.CHECKOUT_MESSAGE}</h3>
+        <a href="MainController?btAction=searchAll">
+            Add more product
+        </a>
+    </body>
 </html>

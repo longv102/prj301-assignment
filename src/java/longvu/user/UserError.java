@@ -28,7 +28,8 @@ public class UserError implements Serializable {
         this.messageError = "";
     }
 
-    public UserError(String usernameError, String fullNameError, String roleIdError, String passwordError, String confirmError, String messageError) {
+    public UserError(String usernameError, String fullNameError, String roleIdError, 
+            String passwordError, String confirmError, String messageError) {
         this.usernameError = usernameError;
         this.fullNameError = fullNameError;
         this.roleIdError = roleIdError;

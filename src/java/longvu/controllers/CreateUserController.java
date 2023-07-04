@@ -41,9 +41,9 @@ public class CreateUserController extends HttpServlet {
             UserDTO user = new UserDTO(username, password, fullName, email, roleId);
             boolean checkValidation = true;
             
-            // User validation
+            // User validation 
             if (username.length() > 20 || username.length() < 5) {
-                userError.setUsernameError("Username MUST be in [5, 10] characters!");
+                userError.setUsernameError("Username MUST be in [5, 20] characters!");
                 checkValidation = false;
             }
             // check duplicate username
@@ -53,8 +53,8 @@ public class CreateUserController extends HttpServlet {
                 checkValidation = false;
 
             }
-            if (fullName.length() > 50 || fullName.length() < 5) {
-                userError.setFullNameError("Fullname MUST be [5, 50] characters");
+            if (fullName.length() > 40 || fullName.length() < 5) {
+                userError.setFullNameError("Fullname MUST be [5, 40] characters");
                 checkValidation = false;
             }
             

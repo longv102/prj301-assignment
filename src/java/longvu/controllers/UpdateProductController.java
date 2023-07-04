@@ -33,7 +33,8 @@ public class UpdateProductController extends HttpServlet {
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             String categoryId = request.getParameter("categoryId");
             ProductDAO dao = new ProductDAO();
-            ProductDTO product = new ProductDTO(id, name, image, price, quantity, categoryId);
+            ProductDTO product = new ProductDTO(id, name, image, price, 
+                    quantity, categoryId, true);
             boolean checkUpdate = dao.updateAProduct(product);
             if (checkUpdate)
                 url = SUCCESS;

@@ -40,8 +40,9 @@ public class SearchUserController extends HttpServlet {
                 if (users != null) {
                     request.setAttribute("USER_SEARCH_RESULT", users);
                     url = SUCCESS;
-                } else
+                } else {
                     request.setAttribute("USER_MESSAGE", "No record is matched!");
+                }
             }
         } catch(ClassNotFoundException | SQLException | NamingException e) {
             log("Error at SearchUserController: " + e.toString());

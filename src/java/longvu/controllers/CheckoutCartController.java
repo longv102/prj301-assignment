@@ -45,16 +45,19 @@ public class CheckoutCartController extends HttpServlet {
             // get username of the user
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             String username = loginUser.getUsername();
+            // get current date
             Timestamp orderDate = Timestamp.from(Instant.now());
+            ProductDAO productDAO = new ProductDAO();
             if (cart != null) {
-                ProductDAO productDAO = new ProductDAO();
                 double total = 0;
                 for (ProductDTO product : cart.getCart().values()) {
                     String productId = product.getId();
                     int purchaseQuantity = product.getQuantity();
+                    // get the product quantity in database
                     int currentQuantity = productDAO.getProductQuantity(productId);
                     if (currentQuantity < purchaseQuantity) {
-                        request.setAttribute("CHECKOUT_MESSAGE", "The product " + productId + " is out of stock!");
+                        request.setAttribute("CHECKOUT_MESSAGE", 
+                                "The product " + productId + " is out of stock!");
                         return;
                     }
                     total += product.getPrice() * purchaseQuantity;
@@ -71,12 +74,14 @@ public class CheckoutCartController extends HttpServlet {
                     String productId = product.getId();
                     int purchaseQuantity = product.getQuantity();
                     double price = product.getPrice();
-                    OrderDetailDTO orderDetail = new OrderDetailDTO(1, orderId, productId, price, purchaseQuantity);
+                    OrderDetailDTO orderDetail = new OrderDetailDTO(1, orderId, 
+                            productId, price, purchaseQuantity);
                     boolean checkOrderDetailInsert = orderDetailDAO.insert(orderDetail);
                     // update the quantity of the product in Product
                     int currentQuantity = productDAO.getProductQuantity(productId);
                     int newCurrentQuantity = currentQuantity - purchaseQuantity; 
-                    ProductDTO updateProductQuantity = new ProductDTO(productId, "", "", price, newCurrentQuantity, "");
+                    ProductDTO updateProductQuantity = new ProductDTO(productId, "", "", 
+                            price, newCurrentQuantity, "", true);
                     boolean checkUpdateQuantity = productDAO.updateProductQuantity(updateProductQuantity);
                     if (checkUpdateQuantity) {
                         request.setAttribute("CHECKOUT_MESSAGE", "Checkout successfully!");

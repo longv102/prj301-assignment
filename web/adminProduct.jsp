@@ -30,7 +30,8 @@
             <button type="submit" name="btAction" value="proSearch">
                 Search
             </button>
-        </form><br>
+        </form> <br>
+        
         <!--admin search result-->
         <c:if test="${requestScope.SEARCH_RESULT != null}">
             <c:if test="${not empty requestScope.SEARCH_RESULT}">
@@ -51,62 +52,63 @@
                     <tbody>
                         <c:forEach var="product" varStatus="counter" 
                                    items="${requestScope.SEARCH_RESULT}">
-                        <form action="MainController">
-                            <tr>
-                                <td>${counter.count}</td>
-                                <td>
-                                    <input type="text" name="id" 
-                                           value="${product.id}" readonly="">
-                                </td>
-                                <td>
-                                    <input type="text" name="name" 
-                                           value="${product.name}" required="">
-                                </td>
-                                <td>
-                                    <input type="text" name="image" 
-                                           value="${product.image}" required="">
-                                </td>
-                                <td>
-                                    <input type="number" name="price" 
-                                           value="${product.price}" required="" min="1">
-                                </td>
-                                <td>
-                                    <input type="number" name="quantity" 
-                                           value="${product.quantity}" required="" min="1">
-                                </td>
-                                <td>
-                                    <input type="text" name="categoryId" 
-                                           value="${product.categoryId}" required="">
-                                </td>
-                                <!--update-->
-                                <td>
-                                    <button type="submit" name="btAction" 
-                                            value="proUpdate">
-                                        Update
-                                    </button>
-                                    <input type="hidden" name="searchValue" 
-                                           value="${param.searchValue}">
-                                </td>
-                                <!--delete-->
-                                <td>
-                                    <c:url var="deleteLink" value="MainController">
-                                        <c:param name="btAction" value="proDelete"></c:param>
-                                        <c:param name="searchValue" 
-                                                 value="${param.searchValue}"></c:param>
-                                        <c:param name="id" value="${product.id}"></c:param>
-                                    </c:url>
-                                    <a href="${deleteLink}">Delete</a>
-                                </td>
-                            </tr>
-                        </form>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <h2 style="color: red">${requestScope.MESSAGE}</h2>
-            <h2 style="color: red">${requestScope.ERROR_MSG}</h2>
+                            <form action="MainController">
+                                <tr>
+                                    <td>${counter.count}</td>
+                                    <td>
+                                        <input type="text" name="id" 
+                                               value="${product.id}" readonly="">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="name" 
+                                               value="${product.name}" required="">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="image" 
+                                               value="${product.image}" required="">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="price" 
+                                               value="${product.price}" required="" min="1">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="quantity" 
+                                               value="${product.quantity}" required="" min="1">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="categoryId" 
+                                               value="${product.categoryId}" readonly="">
+                                    </td>
+                                    <!--update-->
+                                    <td>
+                                        <button type="submit" name="btAction" 
+                                                value="proUpdate">
+                                            Update
+                                        </button>
+                                        <input type="hidden" name="searchValue" 
+                                               value="${param.searchValue}">
+                                    </td>
+                                    <!--delete-->
+                                    <td>
+                                        <c:url var="deleteLink" value="MainController">
+                                            <c:param name="btAction" value="proDelete"></c:param>
+                                            <c:param name="searchValue" 
+                                                     value="${param.searchValue}"></c:param>
+                                            <c:param name="id" value="${product.id}"></c:param>
+                                        </c:url>
+                                        <a href="${deleteLink}">Delete</a>
+                                    </td>
+                                </tr>
+                            </form>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </c:if>
         </c:if>
-    </c:if>
-    <br>
-    <a href="MainController?btAction=addProduct">Click the link to add a new product!</a>
-</body>
+        <h2 style="color: red">${requestScope.MESSAGE}</h2>
+        <br>
+        <a href="MainController?btAction=addProduct">
+            Click the link to add a new product!
+        </a>
+    </body>
 </html>

@@ -35,9 +35,10 @@ public class SearchProductController extends HttpServlet {
                 if (products != null) {
                     request.setAttribute("SEARCH_RESULT", products);
                     url = SUCCESS;
-                } else
+                } else {
                     request.setAttribute("MESSAGE", "No record is matched!");
-            }
+                }
+            }    
         } catch (SQLException | ClassNotFoundException | NamingException e) {
             log("Error at SearchProductController: " + e.toString());
         } finally {

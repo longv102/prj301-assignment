@@ -50,7 +50,6 @@ public class UpdateUserController extends HttpServlet {
                     url = LOGOUT;
                     return;
                 }
-                request.setAttribute("UPDATE_MSG", "Update successfully!");
                 url = SUCCESS;
             }
         } catch(SQLException | NamingException e) {

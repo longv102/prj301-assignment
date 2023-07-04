@@ -35,8 +35,7 @@ public class RemoveCartController extends HttpServlet {
             if (cart != null) {
                 boolean check = cart.remove(id);
                 if (check) {
-                    // huy cart
-                    if (cart.getCart().size() == 0) {
+                    if (cart.getCart().isEmpty()) {
                         cart = null;
                     }
                     session.setAttribute("CART", cart);

@@ -36,7 +36,7 @@
                         
                         <div class="field input-field">
                             <input type="text" name="email" value="" 
-                                   placeholder="Email" class="input">
+                                   placeholder="Email (Optional)" class="input">
                         </div>
                         
                         <div class="field input-field">
@@ -54,15 +54,16 @@
                                    placeholder="Confirm password" class="password" required="">
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
-                        <!--Store the value of btAction-->
-                        <input type="hidden" name="btAction" value="Create" readonly="" class="metadata"  />
                         
                         <div class="g-recaptcha recaptcha-box" 
                              data-sitekey="6Ld66IgmAAAAAL9cKR5k5HJgsCHBYrM3cZkOKc5c"></div>
                         <div id="error"></div>
 
+                        <!--Store the value of btAction-->
+                        <input type="hidden" name="btAction" value="Create" 
+                               readonly="" class="metadata"  />
                         <div class="field button-field">
-                            <button type="submit" name="btAction" value="Create">
+                            <button type="submit">
                                 Signup
                             </button>
                         </div>
@@ -98,6 +99,5 @@
             }
         </script>
         <script src="js/createUserScript.js"></script>
-
     </body>
 </html>

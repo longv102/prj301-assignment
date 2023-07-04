@@ -54,7 +54,8 @@ public class ProductDAO implements Serializable {
             + "SET Quantity = ? "
             + "WHERE ProductID = ?";
     
-    private final String SQL_GET_PRODUCT_BY_ID = "SELECT ProductID, ProductName, Price, Quantity "
+    private final String SQL_GET_PRODUCT_BY_ID = "SELECT ProductID, ProductName, "
+            + "Price, Quantity "
             + "FROM Product "
             + "WHERE ProductID = ?";
     
@@ -86,7 +87,8 @@ public class ProductDAO implements Serializable {
                     String image = rs.getNString("ProductImage");
                     if (products == null)
                         this.products = new ArrayList<>();
-                    this.products.add(new ProductDTO(id, name, image, price, quantity, categoryId));
+                    this.products.add(new ProductDTO(id, name, image, 
+                            price, quantity, categoryId, true));
                 }
             }
         } finally {
@@ -117,7 +119,8 @@ public class ProductDAO implements Serializable {
                     String image = rs.getNString("ProductImage");
                     if (products == null)
                         this.products = new ArrayList<>();
-                    this.products.add(new ProductDTO(id, name, image, price, quantity, categoryId));
+                    this.products.add(new ProductDTO(id, name, image, 
+                            price, quantity, categoryId, true));
                 }
             }
         } finally {
@@ -214,7 +217,7 @@ public class ProductDAO implements Serializable {
                 stm.setDouble(4, product.getPrice());
                 stm.setInt(5, product.getQuantity());
                 stm.setString(6, product.getCategoryId());
-                stm.setBoolean(7, true);
+                stm.setBoolean(7, product.isStatus());
                 int value = stm.executeUpdate();
                 if (value > 0)
                     check = true;
@@ -292,8 +295,8 @@ public class ProductDAO implements Serializable {
                     String productName = rs.getNString("ProductName");
                     double price = rs.getDouble("Price");
                     int quantity = rs.getInt("Quantity");
-                    //
-                    product = new ProductDTO(productId, productName, "", price, quantity, "");
+                    product = new ProductDTO(productId, productName, "", 
+                            price, quantity, "", true);
                 }
             }
         } finally {
