@@ -117,7 +117,7 @@ public class MainController extends HttpServlet {
                 url = DELETE_USER_CONTROLLER;
             } else if (UPDATE_USER.equals(button)) {
                 url = UPDATE_USER_CONTROLLER;
-            }
+            } 
         } catch(Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {
